@@ -23,7 +23,7 @@ var addTwoNumbers = function(l1, l2) {
     this.val = (val===undefined ? 0 : val)
     this.next = (next===undefined ? null : next)
   }
-  // 获取链表每个值组成字符串，再转成数字，相加，返回结果的链表表示
+  // 获取链表每个值组成字符串，再转成数字，相加，返回结果的链表表示:第一次生成之后，每次传入新数据生成新节点
   let curL1 = l1, strL1 = String(curL1.val), curL2 = l2, strL2 = String(curL2.val)
   while (curL1) {
     curL1 = curL1.next
@@ -41,13 +41,18 @@ var addTwoNumbers = function(l1, l2) {
     currentNode.val = +sum[i]
     if (i > 0) {
       currentNode.next = new ListNode(+sum[i-1])
+      if (!result.val && result.val != 0) {
+        result = currentNode
+        console.log('result:??? ', result);
+      } else {
+        currentNode = new ListNode(+sum[i-1])
+      }
+      console.log('result: ', result);
     } else {
       return result
     }
-    if (i == sum.length - 1) {
-      result = currentNode
-    }
-    console.log('result: ', result);
+    // if (i == sum.length - 1) {
+    
     // if (i == 0) {
     //   console.log('result: 11', result);
     //   return result
